@@ -16,10 +16,12 @@
 
 package org.camunda.bpm.elasticsearch;
 
+import org.camunda.bpm.engine.HistoryService;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.RepositoryService;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
+import org.camunda.bpm.engine.history.HistoricProcessInstance;
 import org.camunda.bpm.engine.impl.test.ProcessEngineAssert;
 import org.camunda.bpm.engine.impl.util.ClockUtil;
 import org.camunda.bpm.engine.repository.Deployment;
@@ -147,7 +149,7 @@ public class TestDataGenerator {
       assertEquals("prepareBankTransfer", tasks.get(0).getTaskDefinitionKey());
       taskService.complete(tasks.get(0).getId());
 
-      ProcessEngineAssert.assertProcessEnded(processEngine, pi.getId());
+      ProcessEngineAssert.assertProcessEnded(processEngine, pi.getId());      
     }
 
     LOGGER.info("Created " + numberOfInstances + " instances of 'invoice.bpmn' process.");

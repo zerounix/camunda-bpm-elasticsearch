@@ -71,8 +71,12 @@ public class HistoryEventsIndexingTest extends AbstractElasticSearchTest {
     assertNotNull(source.get("endTime"));
     ArrayList variables = (ArrayList) source.get("variables");
     assertEquals(5, variables.size());
+    
+    // the engine now produces 3 historic events for each task, namely create, update, complete
+    // so as we executed 3 tasks this equals to 9 events
     ArrayList tasks = (ArrayList) source.get("tasks");
-    assertEquals(6, tasks.size());
+    assertEquals(9, tasks.size());
+    
     ArrayList activities = (ArrayList) source.get("activities");
     assertEquals(19, activities.size());
 
